@@ -2,7 +2,7 @@
 <br><br><br>
 <div class="sidebar">
    <a class="lead" href="#" routerLink="/dashboard">Dashboard</a>
-   <a class="lead" href="#" routerLink="/usuario">Usuários</a>
+   <a *ngIf="!isRead" class="lead" href="#" routerLink="/usuario">Usuários</a>
 </div>
 <div class="content">
    <br>
