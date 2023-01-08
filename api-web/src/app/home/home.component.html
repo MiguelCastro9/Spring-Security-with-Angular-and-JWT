@@ -11,8 +11,8 @@
     <div class="card-body">
       <h5 class="card-title">Bem vindo!</h5>
       <p class="card-text">{{emailLogado}}</p>
-      <p *ngIf="rolesLogadoNome == 'ROLE_ADMIN'" class="card-text">Administrador</p>
-      <p *ngIf="rolesLogadoNome == 'ROLE_READ'" class="card-text">Leitor</p>
+      <p *ngIf="isAdmin" class="card-text">Administrador</p>
+      <p *ngIf="isRead" class="card-text">Leitor</p>
     </div>
     <div class="card-footer text-muted">&copy; Miguel Castro / 2023</div>
   </div>

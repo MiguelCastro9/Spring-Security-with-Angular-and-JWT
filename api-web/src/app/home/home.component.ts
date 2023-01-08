@@ -10,36 +10,14 @@ export class HomeComponent implements OnInit {
 
   isAdmin = false;
   isRead = false;
-  roles!: string[];
   emailLogado!: string;
-  rolesLogado!: string[];
-  rolesLogadoNome!: string;
 
   constructor(private tokenService: TokenService) { }
 
   ngOnInit(): void {
 
-    if (this.tokenService.getToken()) {
-
-      this.roles = this.tokenService.getAuthorities();
-      this.roles.forEach(dados => {
-        if (dados == 'ROLE_ADMIN') {
-          this.isAdmin = true;
-        }
-        if (dados == 'ROLE_READ') {
-          this.isRead = true;
-        }
-        this.emailLogado = this.tokenService.getEmail();
-        this.rolesLogado = this.tokenService.getAuthorities();
-        this.rolesLogado.filter(dados => {
-          this.rolesLogadoNome = dados;
-        })
-      })
-    } else {
-
-      this.isRead = false;
-      this.isAdmin = false;
-    }
+    this.isAdmin = this.tokenService.isAdmin();
+    this.isRead = this.tokenService.isRead();
+    this.emailLogado = this.tokenService.getEmail();
   }
-
 }

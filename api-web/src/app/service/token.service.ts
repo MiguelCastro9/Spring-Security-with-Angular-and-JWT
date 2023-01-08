@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 
 const TOKEN_KEY = 'AuthToken';
-const EMAIL_KEY = 'AuthEmail';
-const AUTHORITIES_KEY = 'AuthAuthorities';
 
 @Injectable({
   providedIn: 'root'
@@ -14,43 +12,70 @@ export class TokenService {
   constructor() { }
 
   public getToken(): string {
-
-    return sessionStorage.getItem(TOKEN_KEY)!;
+    return localStorage.getItem(TOKEN_KEY)!;
   }
 
   public setToken(token: string): void {
+    window.localStorage.removeItem(TOKEN_KEY);
+    window.localStorage.setItem(TOKEN_KEY, token);
+  }
 
-    window.sessionStorage.removeItem(TOKEN_KEY);
-    window.sessionStorage.setItem(TOKEN_KEY, token);
+  public isLogged(): boolean {
+    if (this.getToken()) {
+      return true;
+    }
+    return false;
   }
 
   public getEmail(): string {
-
-    return sessionStorage.getItem(EMAIL_KEY)!;
-  }
-
-  public setEmail(email: string): void {
-
-    window.sessionStorage.removeItem(EMAIL_KEY);
-    window.sessionStorage.setItem(EMAIL_KEY, email);
-  }
-
-  public getAuthorities(): string[] {
-
-    this.roles = [];
-
-    if (sessionStorage.getItem(AUTHORITIES_KEY)) {
-      JSON.parse(sessionStorage.getItem(AUTHORITIES_KEY)!).forEach((authority: any) => {
-        this.roles.push(authority.authority);
-      });
+    if (!this.isLogged()) {
+      return "";
     }
-
-    return this.roles;
+    const token = this.getToken();
+    //Recuperando dados do usuário pelo hash do token na posição 1.
+    //Ex.: aaaaaaaaaa.(dados do usuário).aaaaaaaaaa
+    const payload = token.split('.')[1];
+    const payloadDecoded = atob(payload);
+    const values = JSON.parse(payloadDecoded);
+    const email = values.sub;
+    return email;
   }
 
-  public setAuthorities(authorities: string[]): void {
+  public isAdmin(): boolean {
+    if (!this.isLogged()) {
+      return false;
+    }
+    const token = this.getToken();
+    //Recuperando dados do usuário pelo hash do token na posição 1.
+    //Ex.: aaaaaaaaaa.(dados do usuário).aaaaaaaaaa
+    const payload = token.split('.')[1];
+    const payloadDecoded = atob(payload);
+    const values = JSON.parse(payloadDecoded);
+    const roles = values.roles;
+    //Verificando se é administrador.
+    if (roles.indexOf('ROLE_ADMIN') < 0) {
+      return false;
+    }
+    return true;
+  }
 
-    window.sessionStorage.removeItem(AUTHORITIES_KEY);
-    window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
+  public isRead(): boolean {
+    if (!this.isLogged()) {
+      return false;
+    }
+    const token = this.getToken();
+    //Recuperando dados do usuário pelo hash do token na posição 1.
+    //Ex.: aaaaaaaaaa.(dados do usuário).aaaaaaaaaa
+    const payload = token.split('.')[1];
+    const payloadDecoded = atob(payload);
+    const values = JSON.parse(payloadDecoded);
+    const roles = values.roles;
+    console.log(values.roles);
+
+    //Verificando se é leitor.
+    if (roles.indexOf('ROLE_READ') < 0) {
+      return false;
+    }
+    return true;
   }
 }

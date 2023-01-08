@@ -17,7 +17,6 @@ export class DashboardComponent implements OnInit {
   inativoValor!: number;
   adminValor!: number;
   readValor!: number;
-  isAdmin = false;
   isRead = false;
   roles!: string[];
   total!: number;
@@ -32,22 +31,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if (this.tokenService.getToken()) {
-
-      this.roles = this.tokenService.getAuthorities();
-      this.roles.forEach(dados => {
-        if (dados == 'ROLE_ADMIN') {
-          this.isAdmin = true;
-        }
-        if (dados == 'ROLE_READ') {
-          this.isRead = true;
-        }
-      })
-    } else {
-
-      this.isAdmin = false;
-      this.isRead = false;
-    }
+    this.isRead = this.tokenService.isRead();
 
     this.dashboardService.inativos().subscribe(dados => {
       this.inativoValor = dados;

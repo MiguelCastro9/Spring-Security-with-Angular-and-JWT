@@ -14,21 +14,19 @@ export class GuardService implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
 
     const expectedRole = route.data['expectedRole'];
-    const roles = this.tokenService.getAuthorities();
 
-    roles.forEach(dados => {
-      if (dados == 'ROLE_ADMIN') {
-        this.realRole = 'admin';
-      }
-      if (dados == 'ROLE_READ') {
-        this.realRole = 'read';
-      }
-    });
+    if (this.tokenService.isAdmin()) {
+      this.realRole = 'admin';
+    }
+    if (this.tokenService.isRead()) {
+      this.realRole = 'read';
+    }
 
     //Throws - não achou o token
-    if (!this.tokenService.getToken() || expectedRole.indexOf(this.realRole) === -1) {
+    if (!this.tokenService.isLogged() || expectedRole.indexOf(this.realRole) < 0) {
 
       this.router.navigate(['/login']);
+      return false;
     }
 
     return true;

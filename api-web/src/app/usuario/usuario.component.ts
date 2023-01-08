@@ -14,8 +14,6 @@ export class UsuarioComponent implements OnInit {
   usuarioLista: UsuarioDto[] = [];
   verifica = false;
   roles!: string[];
-  isAdmin = false;
-  isRead = false;
   senhaRepetida: string = '';
   successMensagem = '';
   alertMensagem = '';
@@ -24,31 +22,11 @@ export class UsuarioComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if (this.tokenService.getToken()) {
-
-      this.roles = this.tokenService.getAuthorities();
-      this.roles.forEach(dados => {
-        if (dados == 'ROLE_ADMIN') {
-          this.isAdmin = true;
-        }
-        if (dados == 'ROLE_READ') {
-          this.isRead = true;
-        }
-      })
-    } else {
-
-      this.isRead = false;
-      this.isAdmin = false;
-    }
-
     this.listar();
-
   }
 
   listar() {
-
     this.usuarioService.listar().subscribe(dados => this.usuarioLista = dados);
-
   }
 
   validarFormulario() {
