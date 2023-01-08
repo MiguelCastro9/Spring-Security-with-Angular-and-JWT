@@ -38,4 +38,10 @@ public class DashboardController {
         
         return new ResponseEntity<>(usuarioService.countUsuarioAdmin(), HttpStatus.OK);
     }
+    
+    @GetMapping("/read")
+    public ResponseEntity<Integer> countRead() {
+        
+        return new ResponseEntity<>(usuarioService.countUsuarioRead(), HttpStatus.OK);
+    }
 }

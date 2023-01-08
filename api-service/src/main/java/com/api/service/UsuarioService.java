@@ -68,4 +68,9 @@ public class UsuarioService {
         
         return usuarioRepository.queryCountUsuarioAdmin();
     }
+    
+    public Integer countUsuarioRead() {
+        
+        return usuarioRepository.queryCountUsuarioRead();
+    }
 }

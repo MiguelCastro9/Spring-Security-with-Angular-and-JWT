@@ -45,11 +45,9 @@ export class DashboardComponent implements OnInit {
       })
     } else {
 
-      this.isRead = false;
       this.isAdmin = false;
+      this.isRead = false;
     }
-
-    this.usuarios();
 
     this.dashboardService.inativos().subscribe(dados => {
       this.inativoValor = dados;
@@ -57,13 +55,15 @@ export class DashboardComponent implements OnInit {
       this.ativoValor = dados;
     this.dashboardService.admins().subscribe(dados => {
       this.adminValor = dados;
+    this.dashboardService.reads().subscribe(dados => {
+      this.readValor = dados;
 
     new Chart(this.elemento1.nativeElement, {
       type: 'pie',
       data: {
-        labels: ["Administadores","Leitores"],
+        labels: ["Administadores", "Leitores"],
         datasets: [{
-          data: [this.adminValor]
+          data: [this.adminValor, this.readValor]
         }]
       },
       options: {
@@ -85,10 +85,6 @@ export class DashboardComponent implements OnInit {
   });
   });
   });
+  });
   };
-
-  usuarios() {
-
-    this.usuarioService.listar().subscribe(dados => this.usuarioLista = dados);
-  }
 }

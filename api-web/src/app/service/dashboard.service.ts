@@ -30,4 +30,10 @@ export class DashboardService {
     const headers = new HttpHeaders({Authorization: 'Bearer ' + this.token });
     return this.http.get<number>(this.url + '/admin', {headers});
   }
+
+  public reads() {
+
+    const headers = new HttpHeaders({Authorization: 'Bearer ' + this.token });
+    return this.http.get<number>(this.url + '/read', {headers});
+  }
 }
