@@ -15,9 +15,7 @@ export class UsuarioComponent implements OnInit {
   verifica = false;
   roles!: string[];
   isAdmin = false;
-  isGestor = false;
-  isCriador = false;
-  isEditor = false;
+  isRead = false;
   senhaRepetida: string = '';
   successMensagem = '';
   alertMensagem = '';
@@ -33,19 +31,13 @@ export class UsuarioComponent implements OnInit {
         if (dados == 'ROLE_ADMIN') {
           this.isAdmin = true;
         }
-        if (dados == 'ROLE_GESTOR') {
-          this.isGestor = true;
-        }
-        if (dados == 'ROLE_CRIADOR') {
-          this.isCriador = true;
-        }
-        if (dados == 'ROLE_EDITOR') {
-          this.isEditor = true;
+        if (dados == 'ROLE_READ') {
+          this.isRead = true;
         }
       })
     } else {
 
-      this.isGestor = false;
+      this.isRead = false;
       this.isAdmin = false;
     }
 

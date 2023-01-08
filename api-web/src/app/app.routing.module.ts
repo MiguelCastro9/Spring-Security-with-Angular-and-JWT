@@ -8,10 +8,10 @@ import { GuardService as guard } from './service/guard.service';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [guard], data: { expectedRole: ['admin', 'gestor'] } },
-  { path: 'usuario', component: UsuarioComponent, canActivate: [guard], data: { expectedRole: ['admin', 'criador', 'editor'] } },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [guard], data: { expectedRole: ['admin', 'read'] } },
+  { path: 'usuario', component: UsuarioComponent, canActivate: [guard], data: { expectedRole: ['admin'] } },
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent, canActivate: [guard], data: { expectedRole: ['admin', 'gestor', 'criador', 'editor'] }  }
+  { path: 'home', component: HomeComponent, canActivate: [guard], data: { expectedRole: ['admin', 'read'] }  }
 ];
 
 @NgModule({

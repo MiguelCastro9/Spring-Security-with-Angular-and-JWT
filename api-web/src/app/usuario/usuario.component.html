@@ -1,7 +1,7 @@
 <app-menu></app-menu>
 <br><br><br>
 <div class="sidebar">
-  <a *ngIf="!isCriador && !isEditor" class="lead" href="#" routerLink="/dashboard">Dashboard</a>
+  <a class="lead" href="#" routerLink="/dashboard">Dashboard</a>
   <a class="lead" href="#" routerLink="/usuario">Gestão de usuários</a>
 </div>
 <div class="content">
@@ -39,9 +39,7 @@
               <label for="roleValor">Permissão:</label>
               <select id="roleValor" name="roleValor" [(ngModel)]="usuarioDto.roleValor" class="custom-select" required>
                 <option ngValue="1">Administrador</option>
-                <option ngValue="2">Gestor</option>
-                <option ngValue="3">Criador</option>
-                <option ngValue="4">Editor</option>
+                <option ngValue="2">Leitor</option>
               </select>
             </div>
             <div class="col-md-3 mb-3">
@@ -65,7 +63,7 @@
             <th scope="col">E-mail</th>
             <th scope="col">Permissão</th>
             <th scope="col">Status</th>
-            <th *ngIf="!isCriador" scope="col">Ações</th>
+            <th scope="col">Ações</th>
          </tr>
       </thead>
       <tbody>
@@ -74,12 +72,10 @@
             <td>{{item.nome}}</td>
             <td>{{item.email}}</td>
             <td *ngIf="item.roleValor == 1">Administrador</td>
-            <td *ngIf="item.roleValor == 2">Gestor</td>
-            <td *ngIf="item.roleValor == 3">Criador</td>
-            <td *ngIf="item.roleValor == 4">Editor</td>
+            <td *ngIf="item.roleValor == 2">Leitor</td>
             <td class="userActive" *ngIf="item.status == true">Ativo</td>
             <td class="userInactive" *ngIf="item.status == false">Inativo</td>
-            <td *ngIf="!isCriador">
+            <td>
               <i (click)="editar(item)" class="bi bi-pencil"></i>
               &nbsp;&nbsp;
             <i (click)="deletar(item)" class="bi bi-trash"></i></td>

@@ -20,14 +20,8 @@ export class GuardService implements CanActivate {
       if (dados == 'ROLE_ADMIN') {
         this.realRole = 'admin';
       }
-      if (dados == 'ROLE_GESTOR') {
-        this.realRole = 'gestor';
-      }
-      if (dados == 'ROLE_CRIADOR') {
-        this.realRole = 'criador';
-      }
-      if (dados == 'ROLE_EDITOR') {
-        this.realRole = 'editor';
+      if (dados == 'ROLE_READ') {
+        this.realRole = 'read';
       }
     });
 

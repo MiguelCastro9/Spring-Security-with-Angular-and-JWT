@@ -9,9 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
   isAdmin = false;
-  isGestor = false;
-  isCriador = false;
-  isEditor = false;
+  isRead = false;
   roles!: string[];
   emailLogado!: string;
   rolesLogado!: string[];
@@ -28,14 +26,8 @@ export class HomeComponent implements OnInit {
         if (dados == 'ROLE_ADMIN') {
           this.isAdmin = true;
         }
-        if (dados == 'ROLE_GESTOR') {
-          this.isGestor = true;
-        }
-        if (dados == 'ROLE_CRIADOR') {
-          this.isCriador = true;
-        }
-        if (dados == 'ROLE_EDITOR') {
-          this.isEditor = true;
+        if (dados == 'ROLE_READ') {
+          this.isRead = true;
         }
         this.emailLogado = this.tokenService.getEmail();
         this.rolesLogado = this.tokenService.getAuthorities();
@@ -45,7 +37,7 @@ export class HomeComponent implements OnInit {
       })
     } else {
 
-      this.isGestor = false;
+      this.isRead = false;
       this.isAdmin = false;
     }
   }

@@ -16,13 +16,9 @@ export class DashboardComponent implements OnInit {
   ativoValor!: number;
   inativoValor!: number;
   adminValor!: number;
-  gestorValor!: number;
-  criadorValor!: number;
-  editorValor!: number;
+  readValor!: number;
   isAdmin = false;
-  isGestor = false;
-  isCriador = false;
-  isEditor = false;
+  isRead = false;
   roles!: string[];
   total!: number;
 
@@ -43,19 +39,13 @@ export class DashboardComponent implements OnInit {
         if (dados == 'ROLE_ADMIN') {
           this.isAdmin = true;
         }
-        if (dados == 'ROLE_GESTOR') {
-          this.isGestor = true;
-        }
-        if (dados == 'ROLE_CRIADOR') {
-          this.isCriador = true;
-        }
-        if (dados == 'ROLE_EDITOR') {
-          this.isEditor = true;
+        if (dados == 'ROLE_READ') {
+          this.isRead = true;
         }
       })
     } else {
 
-      this.isGestor = false;
+      this.isRead = false;
       this.isAdmin = false;
     }
 
@@ -65,21 +55,15 @@ export class DashboardComponent implements OnInit {
       this.inativoValor = dados;
     this.dashboardService.ativos().subscribe(dados => {
       this.ativoValor = dados;
-    this.dashboardService.editores().subscribe(dados => {
-      this.editorValor = dados;
-    this.dashboardService.criadores().subscribe(dados => {
-      this.criadorValor = dados;
-    this.dashboardService.gestores().subscribe(dados => {
-      this.gestorValor = dados;
     this.dashboardService.admins().subscribe(dados => {
       this.adminValor = dados;
 
     new Chart(this.elemento1.nativeElement, {
       type: 'pie',
       data: {
-        labels: ["Administadores","Gestores","Criadores","Editores"],
+        labels: ["Administadores","Leitores"],
         datasets: [{
-          data: [this.adminValor, this.gestorValor, this.criadorValor, this.editorValor]
+          data: [this.adminValor]
         }]
       },
       options: {
@@ -98,9 +82,6 @@ export class DashboardComponent implements OnInit {
         responsive: true
       }
     });
-  });
-  });
-  });
   });
   });
   });

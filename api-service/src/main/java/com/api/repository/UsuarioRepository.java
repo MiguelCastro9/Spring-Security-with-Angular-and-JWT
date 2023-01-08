@@ -17,13 +17,13 @@ public interface UsuarioRepository extends JpaRepository<UsuarioModel, Long> {
     
     boolean existsByEmail(String email);
     
-    @Query(value = "SELECT COUNT(id) FROM usuario WHERE status = 1", nativeQuery = true)
+    @Query(value = "SELECT COUNT(id) FROM usuario_model WHERE status = 1", nativeQuery = true)
     public Integer queryCountUsuarioActive();
     
-    @Query(value = "SELECT COUNT(id) FROM usuario WHERE status = 0", nativeQuery = true)
+    @Query(value = "SELECT COUNT(id) FROM usuario_model WHERE status = 0", nativeQuery = true)
     public Integer queryCountUsuarioInactive();
     
-    @Query(value = "SELECT COUNT(id) FROM usuario WHERE role_valor = 1", nativeQuery = true)
+    @Query(value = "SELECT COUNT(id) FROM usuario_model WHERE role_valor = 1", nativeQuery = true)
     public Integer queryCountUsuarioAdmin();
     
    
