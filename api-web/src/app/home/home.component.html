@@ -1,1 +1,21 @@
-<p>home works!</p>
+<app-menu></app-menu>
+<br><br><br>
+<div class="sidebar">
+   <a *ngIf="!isCriador && !isEditor" class="lead" href="#" routerLink="/dashboard">Dashboard</a>
+   <a *ngIf="!isGestor" class="lead" href="#" routerLink="/usuario">Gestão de usuários</a>
+</div>
+<div class="content">
+  <br>
+  <div class="card text-center">
+    <div class="card-header"></div>
+    <div class="card-body">
+      <h5 class="card-title">Bem vindo!</h5>
+      <p class="card-text">{{emailLogado}}</p>
+      <p *ngIf="rolesLogadoNome == 'ROLE_ADMIN'" class="card-text">Administrador</p>
+      <p *ngIf="rolesLogadoNome == 'ROLE_GESTOR'" class="card-text">Gestor</p>
+      <p *ngIf="rolesLogadoNome == 'ROLE_CRIADOR'" class="card-text">Criador</p>
+      <p *ngIf="rolesLogadoNome == 'ROLE_EDITOR'" class="card-text">Editor</p>
+    </div>
+    <div class="card-footer text-muted">&copy; Prova - Miguel Castro / 2022</div>
+  </div>
+</div>
