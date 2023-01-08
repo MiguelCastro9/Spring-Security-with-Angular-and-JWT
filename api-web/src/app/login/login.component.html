@@ -1,1 +1,22 @@
-<p>login works!</p>
+<br>
+<div class="container jumbotron">
+   <h1 class="display-4">Login</h1>
+   <hr class="my-4">
+   <form>
+      <div class="container form-group col-md-4">
+         <input type="email" class="form-control" id="email" name="email" [(ngModel)]="loginDto.email" placeholder="E-mail...">
+      </div>
+      <div class="container form-group col-md-4">
+         <input type="password" class="form-control" id="senha" name="senha" [(ngModel)]="loginDto.senha" placeholder="Senha..." >
+         <br>
+         <button (click)="login(loginDto);" class="btn btn-outline-light btn-block"><strong>Entrar</strong></button>
+         <br>
+         <div *ngIf="alertMensagem" class="alert alert-danger" role="alert">
+          <span><strong>{{alertMensagem}}</strong></span>
+         </div>
+        </div>
+   </form>
+</div>
+<footer class="text-center text-muted">
+   &copy; Prova - Miguel Castro / 2022
+</footer>
