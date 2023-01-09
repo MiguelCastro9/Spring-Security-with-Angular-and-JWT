@@ -86,5 +86,4 @@ public class UsuarioPrincipal implements UserDetails {
     public String getNome() {
         return nome;
     }
-
 }

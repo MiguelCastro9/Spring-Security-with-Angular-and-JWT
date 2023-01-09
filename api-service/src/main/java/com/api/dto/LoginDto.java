@@ -25,5 +25,4 @@ public class LoginDto {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-
 }

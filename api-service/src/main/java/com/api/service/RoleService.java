@@ -19,7 +19,7 @@ public class RoleService {
 
     @Autowired
     RoleRepository roleRepository;
-    
+
     public Optional<RoleModel> getByRoleNome(RoleNome roleNome) {
 
         return roleRepository.findByRoleNome(roleNome);
@@ -34,14 +34,14 @@ public class RoleService {
 
         return roleRepository.findAll();
     }
-    
+
     public void insertRoles(Long usuarioId, Long roleId) {
-        
+
         roleRepository.queryInsertRoles(usuarioId, roleId);
     }
-    
+
     public void deleteRoles(Long usuarioId) {
-        
+
         roleRepository.queryDeleteRoles(usuarioId);
     }
 }

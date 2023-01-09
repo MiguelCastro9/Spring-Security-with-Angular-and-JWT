@@ -21,7 +21,7 @@ public class UsuarioService {
 
     @Autowired
     UsuarioRepository usuarioRepository;
-    
+
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -34,25 +34,25 @@ public class UsuarioService {
 
         return usuarioRepository.existsByEmail(email);
     }
-    
+
     public List<UsuarioModel> list() {
 
         return usuarioRepository.findAll();
     }
-    
+
     public Optional<UsuarioModel> find(Long id) {
-        
+
         Optional<UsuarioModel> usuarioModel = usuarioRepository.findById(id);
-        
+
         if (!usuarioModel.isPresent()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado.");
         }
-        
+
         return usuarioModel;
     }
 
     public UsuarioModel save(UsuarioModel usuarioModel) {
-        
+
         if ("".equalsIgnoreCase(usuarioModel.getNome())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Nome inválido.");
         }
@@ -65,16 +65,16 @@ public class UsuarioService {
         if (usuarioModel.getRoleValor() == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Valor da role inválida.");
         }
-        
+
         usuarioModel.setSenha(passwordEncoder.encode(usuarioModel.getSenha()));
         usuarioModel.setStatus(true);
         usuarioRepository.save(usuarioModel);
-        
+
         return usuarioModel;
     }
-    
+
     public UsuarioModel edit(UsuarioModel usuarioModel) {
-        
+
         if ("".equalsIgnoreCase(usuarioModel.getNome())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Nome inválido.");
         }
@@ -87,41 +87,41 @@ public class UsuarioService {
         if (usuarioModel.getRoleValor() == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Valor da role inválida.");
         }
-        
+
         usuarioModel.setSenha(passwordEncoder.encode(usuarioModel.getSenha()));
         usuarioRepository.saveAndFlush(usuarioModel);
-        
+
         return usuarioModel;
     }
-    
+
     public void delete(Long id) {
-        
+
         Optional<UsuarioModel> usuarioModel = usuarioRepository.findById(id);
-        
+
         if (!usuarioModel.isPresent()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado.");
         }
-        
+
         usuarioRepository.deleteById(id);
     }
-    
+
     public Integer countUsuarioActive() {
-        
+
         return usuarioRepository.queryCountUsuarioActive();
     }
-    
+
     public Integer countUsuarioInactive() {
-        
+
         return usuarioRepository.queryCountUsuarioInactive();
     }
-    
+
     public Integer countUsuarioAdmin() {
-        
+
         return usuarioRepository.queryCountUsuarioAdmin();
     }
-    
+
     public Integer countUsuarioRead() {
-        
+
         return usuarioRepository.queryCountUsuarioRead();
     }
 }

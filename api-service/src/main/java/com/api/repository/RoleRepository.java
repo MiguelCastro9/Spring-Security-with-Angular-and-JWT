@@ -16,17 +16,16 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface RoleRepository extends JpaRepository<RoleModel, Long> {
-    
+
     Optional<RoleModel> findByRoleNome(RoleNome roleNome);
-    
+
     @Transactional
     @Modifying
     @Query(value = "INSERT INTO usuario_role (usuario_id, role_id) VALUES (:usuarioId, :roleId)", nativeQuery = true)
     public void queryInsertRoles(@Param("usuarioId") Long usuarioId, @Param("roleId") Long roleId);
-    
+
     @Transactional
     @Modifying
     @Query(value = "DELETE FROM usuario_role WHERE usuario_id = :usuarioId", nativeQuery = true)
     public void queryDeleteRoles(@Param("usuarioId") Long usuarioId);
-    
 }

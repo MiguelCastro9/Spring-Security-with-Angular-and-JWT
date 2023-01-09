@@ -103,5 +103,4 @@ public class UsuarioModel {
     public void setRoles(Set<RoleModel> roles) {
         this.roles = roles;
     }
-
 }

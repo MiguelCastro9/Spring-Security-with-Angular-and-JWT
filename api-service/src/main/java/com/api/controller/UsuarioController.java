@@ -49,7 +49,6 @@ public class UsuarioController {
 
         usuarioService.save(usuarioModel);
         roleService.insertRoles(usuarioModel.getId(), usuarioModel.getRoleValor());
-        
         return new ResponseEntity<>("Usuário salvo com sucesso!", HttpStatus.CREATED);
     }
 
@@ -58,7 +57,6 @@ public class UsuarioController {
 
         usuarioService.edit(usuarioModel);
         roleService.insertRoles(usuarioModel.getId(), usuarioModel.getRoleValor());
-
         return new ResponseEntity<>("Usuário editado com sucesso!", HttpStatus.CREATED);
     }
 
@@ -67,7 +65,6 @@ public class UsuarioController {
 
         usuarioService.delete(id);
         roleService.deleteRoles(id);
-
         return new ResponseEntity<>("Usuário deletado com sucesso!", HttpStatus.OK);
     }
 

@@ -28,6 +28,4 @@ public interface UsuarioRepository extends JpaRepository<UsuarioModel, Long> {
     
     @Query(value = "SELECT COUNT(id) FROM usuario_model WHERE role_valor = 2", nativeQuery = true)
     public Integer queryCountUsuarioRead();
-    
-   
 }
