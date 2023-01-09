@@ -30,17 +30,17 @@ public class UsuarioService {
         return usuarioRepository.findByEmail(email);
     }
 
-    public boolean existsEmail(String email) {
+    public boolean verificaEmail(String email) {
 
         return usuarioRepository.existsByEmail(email);
     }
 
-    public List<UsuarioModel> list() {
+    public List<UsuarioModel> listar() {
 
         return usuarioRepository.findAll();
     }
 
-    public Optional<UsuarioModel> find(Long id) {
+    public Optional<UsuarioModel> buscar(Long id) {
 
         Optional<UsuarioModel> usuarioModel = usuarioRepository.findById(id);
 
@@ -51,7 +51,7 @@ public class UsuarioService {
         return usuarioModel;
     }
 
-    public UsuarioModel save(UsuarioModel usuarioModel) {
+    public UsuarioModel inserir(UsuarioModel usuarioModel) {
 
         if ("".equalsIgnoreCase(usuarioModel.getNome())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Nome inválido.");
@@ -73,7 +73,7 @@ public class UsuarioService {
         return usuarioModel;
     }
 
-    public UsuarioModel edit(UsuarioModel usuarioModel) {
+    public UsuarioModel alterar(UsuarioModel usuarioModel) {
 
         if ("".equalsIgnoreCase(usuarioModel.getNome())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Nome inválido.");
@@ -94,7 +94,7 @@ public class UsuarioService {
         return usuarioModel;
     }
 
-    public void delete(Long id) {
+    public void deletar(Long id) {
 
         Optional<UsuarioModel> usuarioModel = usuarioRepository.findById(id);
 

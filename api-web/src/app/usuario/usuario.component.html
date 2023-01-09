@@ -16,38 +16,45 @@
             <div class="form-row">
                <div class="col-md-6 mb-3">
                   <label for="nome">Nome completo:</label>
-                  <input type="text" id="nome" name="nome" [(ngModel)]="usuarioDto.nome" class="form-control" required>
+                  <input type="text" id="nome" name="nome" [(ngModel)]="usuarioDto.nome" maxlength="20" class="form-control">
                </div>
                <div class="col-md-6 mb-3">
                   <label for="email">E-mail:</label>
-                  <input type="email" id="email" name="email" [(ngModel)]="usuarioDto.email" class="form-control" required>
+                  <input type="email" id="email" name="email" [(ngModel)]="usuarioDto.email" maxlength="20" class="form-control">
                </div>
             </div>
             <div class="form-row">
                <div class="col-md-3 mb-3">
                   <label for="senha">Senha:</label>
-                  <input type="password" id="senha" name="senha" [(ngModel)]="usuarioDto.senha" class="form-control" required>
+                  <input type="password" id="senha" name="senha" [(ngModel)]="senha" maxlength="20" class="form-control">
                </div>
                <div class="col-md-3 mb-3">
                   <label for="senhaRepetida">Repita sua senha:</label>
-                  <input type="password" id="senhaRepetida" name="senhaRepetida" [(ngModel)]="senhaRepetida" class="form-control" required>
+                  <input type="password" id="senhaRepetida" name="senhaRepetida" [(ngModel)]="senhaRepetida" maxlength="20" class="form-control">
                </div>
                <div class="col-md-3 mb-3">
                   <label for="roleValor">Permissão:</label>
-                  <select id="roleValor" name="roleValor" [(ngModel)]="usuarioDto.roleValor" class="custom-select" required>
-                  <option ngValue="1">Administrador</option>
-                  <option ngValue="2">Leitor</option>
+                  <select id="roleValor" name="roleValor" [(ngModel)]="usuarioDto.roleValor" class="custom-select">
+                  <option value="1">Administrador</option>
+                  <option value="2">Leitor</option>
                   </select>
                </div>
-               <div class="col-md-3 mb-3">
+               <div hidden *ngIf="!insereOuAltera" class="col-md-3 mb-3">
                   <label for="status">Status:</label>
-                  <select id="status" name="status" [(ngModel)]="usuarioDto.status" class="custom-select" required>
-                  <option ngValue="true">Ativo</option>
-                  <option ngValue="false">Inativo</option>
+                  <select disabled id="status" name="status" [(ngModel)]="usuarioDto.status" class="custom-select">
+                  <option value="true">Ativo</option>
+                  <option value="false">Inativo</option>
                   </select>
                </div>
+               <div *ngIf="insereOuAltera" class="col-md-3 mb-3">
+                <label for="status">Status:</label>
+                <select id="status" name="status" [(ngModel)]="usuarioDto.status" class="custom-select">
+                <option value="true">Ativo</option>
+                <option value="false">Inativo</option>
+                </select>
+             </div>
             </div>
-            <button class="btn btn-dark" (click)="salvar(usuarioDto);">Salvar</button>
+            <button class="btn btn-dark" (click)="inserir(usuarioDto);">Salvar</button>
          </form>
       </div>
    </div>
@@ -73,11 +80,12 @@
             <td class="userActive" *ngIf="item.status == true">Ativo</td>
             <td class="userInactive" *ngIf="item.status == false">Inativo</td>
             <td>
-               <i (click)="editar(item)" class="bi bi-pencil"></i>
+               <i (click)="alterar(item)" class="bi bi-pencil"></i>
                &nbsp;&nbsp;
                <i (click)="deletar(item)" class="bi bi-trash"></i>
             </td>
          </tr>
       </tbody>
    </table>
+   <br>
 </div>

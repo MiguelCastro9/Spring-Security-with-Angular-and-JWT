@@ -35,36 +35,36 @@ public class UsuarioController {
     @GetMapping("/listar")
     public ResponseEntity<List<UsuarioModel>> listar() {
 
-        return new ResponseEntity<>(usuarioService.list(), HttpStatus.OK);
+        return new ResponseEntity<>(usuarioService.listar(), HttpStatus.OK);
     }
 
     @GetMapping("/buscar/{id}")
-    public ResponseEntity<?> buscarId(@PathVariable("id") Long id) {
+    public ResponseEntity<?> buscar(@PathVariable("id") Long id) {
 
-        return new ResponseEntity<>(usuarioService.find(id), HttpStatus.OK);
+        return new ResponseEntity<>(usuarioService.buscar(id), HttpStatus.OK);
     }
 
     @PostMapping("/inserir")
     public ResponseEntity<?> inserir(@RequestBody UsuarioModel usuarioModel) {
 
-        usuarioService.save(usuarioModel);
-        roleService.insertRoles(usuarioModel.getId(), usuarioModel.getRoleValor());
+        usuarioService.inserir(usuarioModel);
+        roleService.inserir(usuarioModel.getId(), usuarioModel.getRoleValor());
         return new ResponseEntity<>("Usuário salvo com sucesso!", HttpStatus.CREATED);
     }
 
     @PutMapping("/editar")
     public ResponseEntity<?> editar(@RequestBody UsuarioModel usuarioModel) {
 
-        usuarioService.edit(usuarioModel);
-        roleService.insertRoles(usuarioModel.getId(), usuarioModel.getRoleValor());
+        usuarioService.alterar(usuarioModel);
+        roleService.inserir(usuarioModel.getId(), usuarioModel.getRoleValor());
         return new ResponseEntity<>("Usuário editado com sucesso!", HttpStatus.CREATED);
     }
 
     @DeleteMapping("/deletar/{id}")
     public ResponseEntity<?> deletar(@PathVariable("id") Long id) {
 
-        usuarioService.delete(id);
-        roleService.deleteRoles(id);
+        usuarioService.deletar(id);
+        roleService.deletar(id);
         return new ResponseEntity<>("Usuário deletado com sucesso!", HttpStatus.OK);
     }
 

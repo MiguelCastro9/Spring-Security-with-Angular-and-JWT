@@ -30,17 +30,17 @@ public class RoleService {
         roleRepository.save(role);
     }
 
-    public List<RoleModel> list() {
+    public List<RoleModel> listar() {
 
         return roleRepository.findAll();
     }
 
-    public void insertRoles(Long usuarioId, Long roleId) {
+    public void inserir(Long usuarioId, Long roleId) {
 
         roleRepository.queryInsertRoles(usuarioId, roleId);
     }
 
-    public void deleteRoles(Long usuarioId) {
+    public void deletar(Long usuarioId) {
 
         roleRepository.queryDeleteRoles(usuarioId);
     }

@@ -19,7 +19,7 @@ export class UsuarioService {
     return this.http.get<UsuarioDto[]>(this.url + '/listar', {headers});
   }
 
-  buscar(id: any) {
+  public buscar(id: any) {
     const headers = new HttpHeaders({Authorization: 'Bearer ' + this.token });
     return this.http.get<UsuarioDto>(this.url + '/buscar/' + id, {headers});
   }
@@ -29,7 +29,7 @@ export class UsuarioService {
     return this.http.post<any>(this.url + '/inserir', usuarioDto, {headers});
   }
 
-  public editar(usuarioDto: UsuarioDto) {
+  public alterar(usuarioDto: UsuarioDto) {
     const headers = new HttpHeaders({Authorization: 'Bearer ' + this.token });
     return this.http.put<UsuarioDto>(this.url + '/editar', usuarioDto, {headers});
   }
