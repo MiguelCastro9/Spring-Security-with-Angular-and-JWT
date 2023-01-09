@@ -8,10 +8,11 @@ import { Observable } from 'rxjs';
 })
 export class InterceptorService implements HttpInterceptor {
 
+
   constructor(private tokeService: TokenService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
+    console.log('wdwadd');
     let intReq = req;
     const token = this.tokeService.getToken();
 
@@ -23,6 +24,3 @@ export class InterceptorService implements HttpInterceptor {
     return next.handle(intReq);
   }
 }
-
-export const interceptorProvider = [{provider: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}];
-
