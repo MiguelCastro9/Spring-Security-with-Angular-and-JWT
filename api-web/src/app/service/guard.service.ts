@@ -24,11 +24,9 @@ export class GuardService implements CanActivate {
 
     //Throws - não achou o token
     if (!this.tokenService.isLogged() || expectedRole.indexOf(this.realRole) < 0) {
-
       this.router.navigate(['/login']);
       return false;
     }
-
     return true;
   }
 }

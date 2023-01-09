@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from './../service/auth.service';
 import { TokenService } from './../service/token.service';
@@ -14,22 +15,18 @@ export class LoginComponent implements OnInit {
   loginDto = new LoginDto();
   alertMensagem = '';
 
-  constructor(private tokenService: TokenService,
-    private authService: AuthService,
+  constructor(private tokenService: TokenService, private authService: AuthService,
     private router: Router) { }
 
   ngOnInit(): void {
-
   }
 
   login(loginDto: LoginDto): void {
-
     this.authService.login(loginDto).subscribe(dados => {
       this.tokenService.setToken(dados.token);
       this.router.navigate(['/home']);
-    }, err => {
+    }, (erro: HttpErrorResponse) => {
       this.alertMensagem = 'E-mail ou senha inválidos, verifique também se o usuário está ativo.';
     })
   }
-
 }

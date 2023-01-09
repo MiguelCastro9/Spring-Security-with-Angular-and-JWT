@@ -13,15 +13,12 @@ export class UsuarioComponent implements OnInit {
   usuarioDto = new UsuarioDto();
   usuarioLista: UsuarioDto[] = [];
   verifica = false;
-  roles!: string[];
   senhaRepetida: string = '';
-  successMensagem = '';
   alertMensagem = '';
 
   constructor(private usuarioService: UsuarioService, private tokenService: TokenService) { }
 
   ngOnInit(): void {
-
     this.listar();
   }
 
@@ -30,7 +27,6 @@ export class UsuarioComponent implements OnInit {
   }
 
   validarFormulario() {
-
     if (!this.usuarioDto.nome) {
       this.alertMensagem = 'Campo nome é obrigatório.';
       return false;
@@ -59,21 +55,17 @@ export class UsuarioComponent implements OnInit {
       this.alertMensagem = 'Campo status é obrigatório.';
       return false;
     }
-
     return true;
   }
 
   salvar(usuarioDto: UsuarioDto) {
-
     if (!this.validarFormulario()) {
       return;
     }
-
     if (!this.verifica) {
       this.usuarioService.inserir(usuarioDto).subscribe().unsubscribe();
       alert('Usuário salvo com sucesso!')
       window.location.reload();
-
     } else {
       this.usuarioService.editar(usuarioDto).subscribe().unsubscribe();
       alert('Usuário editado com sucesso!')
@@ -82,7 +74,6 @@ export class UsuarioComponent implements OnInit {
 }
 
   editar(usuarioDto: UsuarioDto) {
-
     this.verifica = true;
     localStorage.setItem('id', usuarioDto.id.toString());
     let id = localStorage.getItem('id');
@@ -91,7 +82,6 @@ export class UsuarioComponent implements OnInit {
   }
 
   deletar(usuarioDto: UsuarioDto) {
-
     if(confirm("Deseja deletar este usuário ?")){
       this.usuarioService.deletar(usuarioDto)
       .subscribe(dados => this.usuarioLista = this.usuarioLista.filter(p => usuarioDto));

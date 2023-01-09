@@ -1,4 +1,3 @@
-import { UsuarioDto } from './../model/usuarioDto';
 import { UsuarioService } from './../service/usuario.service';
 import { TokenService } from './../service/token.service';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
@@ -12,14 +11,11 @@ import { Chart, registerables } from 'chart.js';
 })
 export class DashboardComponent implements OnInit {
 
-  usuarioLista: UsuarioDto[] = [];
   ativoValor!: number;
   inativoValor!: number;
   adminValor!: number;
   readValor!: number;
   isRead = false;
-  roles!: string[];
-  total!: number;
 
   constructor(private tokenService: TokenService, private usuarioService: UsuarioService,
     private dashboardService: DashboardService) {
@@ -30,9 +26,7 @@ export class DashboardComponent implements OnInit {
   @ViewChild("graficoAtivosInativos", {static: true}) elemento2!: ElementRef;
 
   ngOnInit(): void {
-
     this.isRead = this.tokenService.isRead();
-
     this.dashboardService.inativos().subscribe(dados => {
       this.inativoValor = dados;
     this.dashboardService.ativos().subscribe(dados => {

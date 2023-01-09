@@ -32,6 +32,20 @@ div.content {
   height: 1000px;
 }
 
+table {
+  cursor: pointer;
+}
+
+span {
+  font-size: 50px;
+}
+
+canvas {
+  margin: auto;
+  width: 300px !important;
+  height: 300px !important;
+}
+
 @media screen and (max-width: 700px) {
   .sidebar {
     width: 100%;
@@ -48,19 +62,4 @@ div.content {
     text-align: center;
     float: none;
   }
-}
-
-table {
-  cursor: pointer;
-}
-
-span {
-  font-size: 50px;
-}
-
-canvas {
-  margin: auto;
-  width: 300px !important;
-  height: 300px !important;
-
 }

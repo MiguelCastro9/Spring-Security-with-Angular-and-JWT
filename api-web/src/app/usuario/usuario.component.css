@@ -32,6 +32,18 @@ div.content {
   height: 1000px;
 }
 
+table {
+  cursor: pointer;
+}
+
+.userActive {
+  color: green;
+}
+
+.userInactive {
+  color: red;
+}
+
 @media screen and (max-width: 700px) {
   .sidebar {
     width: 100%;
@@ -48,16 +60,4 @@ div.content {
     text-align: center;
     float: none;
   }
-}
-
-table {
-  cursor: pointer;
-}
-
-.userActive {
-  color: green;
-}
-
-.userInactive {
-  color: red;
 }

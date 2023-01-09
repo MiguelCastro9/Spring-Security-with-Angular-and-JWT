@@ -1,57 +1,54 @@
 <app-menu></app-menu>
 <br><br><br>
 <div class="sidebar">
-  <a class="lead" href="#" routerLink="/dashboard">Dashboard</a>
-  <a class="lead" href="#" routerLink="/usuario">Usuários</a>
+   <a class="lead" href="#" routerLink="/dashboard">Dashboard</a>
+   <a class="lead" href="#" routerLink="/usuario">Usuários</a>
 </div>
 <div class="content">
    <br>
    <div *ngIf="alertMensagem" class="alert alert-danger" role="alert">
-    <span>{{alertMensagem}}</span>
-   </div>
-   <div *ngIf="successMensagem" class="alert alert-success" role="alert">
-    <span>{{successMensagem}}</span>
+      <span>{{alertMensagem}}</span>
    </div>
    <div class="card">
       <div class="card-header lead">Formulário</div>
       <div class="card-body">
-        <form>
-          <div class="form-row">
-            <div class="col-md-6 mb-3">
-              <label for="nome">Nome completo:</label>
-              <input type="text" id="nome" name="nome" [(ngModel)]="usuarioDto.nome" class="form-control" required>
+         <form>
+            <div class="form-row">
+               <div class="col-md-6 mb-3">
+                  <label for="nome">Nome completo:</label>
+                  <input type="text" id="nome" name="nome" [(ngModel)]="usuarioDto.nome" class="form-control" required>
+               </div>
+               <div class="col-md-6 mb-3">
+                  <label for="email">E-mail:</label>
+                  <input type="email" id="email" name="email" [(ngModel)]="usuarioDto.email" class="form-control" required>
+               </div>
             </div>
-            <div class="col-md-6 mb-3">
-              <label for="email">E-mail:</label>
-              <input type="email" id="email" name="email" [(ngModel)]="usuarioDto.email" class="form-control" required>
+            <div class="form-row">
+               <div class="col-md-3 mb-3">
+                  <label for="senha">Senha:</label>
+                  <input type="password" id="senha" name="senha" [(ngModel)]="usuarioDto.senha" class="form-control" required>
+               </div>
+               <div class="col-md-3 mb-3">
+                  <label for="senhaRepetida">Repita sua senha:</label>
+                  <input type="password" id="senhaRepetida" name="senhaRepetida" [(ngModel)]="senhaRepetida" class="form-control" required>
+               </div>
+               <div class="col-md-3 mb-3">
+                  <label for="roleValor">Permissão:</label>
+                  <select id="roleValor" name="roleValor" [(ngModel)]="usuarioDto.roleValor" class="custom-select" required>
+                  <option ngValue="1">Administrador</option>
+                  <option ngValue="2">Leitor</option>
+                  </select>
+               </div>
+               <div class="col-md-3 mb-3">
+                  <label for="status">Status:</label>
+                  <select id="status" name="status" [(ngModel)]="usuarioDto.status" class="custom-select" required>
+                  <option ngValue="true">Ativo</option>
+                  <option ngValue="false">Inativo</option>
+                  </select>
+               </div>
             </div>
-          </div>
-          <div class="form-row">
-            <div class="col-md-3 mb-3">
-              <label for="senha">Senha:</label>
-              <input type="password" id="senha" name="senha" [(ngModel)]="usuarioDto.senha" class="form-control" required>
-            </div>
-            <div class="col-md-3 mb-3">
-              <label for="senhaRepetida">Repita sua senha:</label>
-              <input type="password" id="senhaRepetida" name="senhaRepetida" [(ngModel)]="senhaRepetida" class="form-control" required>
-            </div>
-            <div class="col-md-3 mb-3">
-              <label for="roleValor">Permissão:</label>
-              <select id="roleValor" name="roleValor" [(ngModel)]="usuarioDto.roleValor" class="custom-select" required>
-                <option ngValue="1">Administrador</option>
-                <option ngValue="2">Leitor</option>
-              </select>
-            </div>
-            <div class="col-md-3 mb-3">
-              <label for="status">Status:</label>
-              <select id="status" name="status" [(ngModel)]="usuarioDto.status" class="custom-select" required>
-                <option ngValue="true">Ativo</option>
-                <option ngValue="false">Inativo</option>
-              </select>
-            </div>
-          </div>
-          <button class="btn btn-dark" (click)="salvar(usuarioDto);">Salvar</button>
-        </form>
+            <button class="btn btn-dark" (click)="salvar(usuarioDto);">Salvar</button>
+         </form>
       </div>
    </div>
    <br>
@@ -76,11 +73,11 @@
             <td class="userActive" *ngIf="item.status == true">Ativo</td>
             <td class="userInactive" *ngIf="item.status == false">Inativo</td>
             <td>
-              <i (click)="editar(item)" class="bi bi-pencil"></i>
-              &nbsp;&nbsp;
-            <i (click)="deletar(item)" class="bi bi-trash"></i></td>
+               <i (click)="editar(item)" class="bi bi-pencil"></i>
+               &nbsp;&nbsp;
+               <i (click)="deletar(item)" class="bi bi-trash"></i>
+            </td>
          </tr>
       </tbody>
    </table>
 </div>
-

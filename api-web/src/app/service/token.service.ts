@@ -70,8 +70,6 @@ export class TokenService {
     const payloadDecoded = atob(payload);
     const values = JSON.parse(payloadDecoded);
     const roles = values.roles;
-    console.log(values.roles);
-
     //Verificando se é leitor.
     if (roles.indexOf('ROLE_READ') < 0) {
       return false;

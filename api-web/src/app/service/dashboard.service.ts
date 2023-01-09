@@ -14,25 +14,21 @@ export class DashboardService {
   token = this.tokenService.getToken();
 
   public ativos() {
-
     const headers = new HttpHeaders({Authorization: 'Bearer ' + this.token });
     return this.http.get<number>(this.url + '/ativo', {headers});
   }
 
   public inativos() {
-
     const headers = new HttpHeaders({Authorization: 'Bearer ' + this.token });
     return this.http.get<number>(this.url + '/inativo', {headers});
   }
 
   public admins() {
-
     const headers = new HttpHeaders({Authorization: 'Bearer ' + this.token });
     return this.http.get<number>(this.url + '/admin', {headers});
   }
 
   public reads() {
-
     const headers = new HttpHeaders({Authorization: 'Bearer ' + this.token });
     return this.http.get<number>(this.url + '/read', {headers});
   }

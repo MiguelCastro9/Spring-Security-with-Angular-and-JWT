@@ -5,15 +5,15 @@
    <a *ngIf="!isRead" class="lead" href="#" routerLink="/usuario">Usuários</a>
 </div>
 <div class="content">
-  <br>
-  <div class="card text-center">
-    <div class="card-header"></div>
-    <div class="card-body">
-      <h5 class="card-title">Bem vindo!</h5>
-      <p class="card-text">{{emailLogado}}</p>
-      <p *ngIf="isAdmin" class="card-text">Administrador</p>
-      <p *ngIf="isRead" class="card-text">Leitor</p>
-    </div>
-    <div class="card-footer text-muted">&copy; Miguel Castro / 2023</div>
-  </div>
+   <br>
+   <div class="card text-center">
+      <div class="card-header"></div>
+      <div class="card-body">
+         <h5 class="card-title">Bem vindo!</h5>
+         <p class="card-text">{{emailLogado}}</p>
+         <p *ngIf="isAdmin" class="card-text">Administrador</p>
+         <p *ngIf="isRead" class="card-text">Leitor</p>
+      </div>
+      <div class="card-footer text-muted">&copy; Miguel Castro / 2023</div>
+   </div>
 </div>

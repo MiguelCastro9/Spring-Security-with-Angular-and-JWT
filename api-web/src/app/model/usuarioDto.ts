@@ -8,5 +8,4 @@ export class UsuarioDto {
   status!: boolean;
 
   constructor() {}
-
 }

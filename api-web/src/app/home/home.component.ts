@@ -15,7 +15,6 @@ export class HomeComponent implements OnInit {
   constructor(private tokenService: TokenService) { }
 
   ngOnInit(): void {
-
     this.isAdmin = this.tokenService.isAdmin();
     this.isRead = this.tokenService.isRead();
     this.emailLogado = this.tokenService.getEmail();

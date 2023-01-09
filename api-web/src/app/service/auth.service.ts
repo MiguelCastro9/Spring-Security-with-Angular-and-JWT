@@ -13,7 +13,6 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   public login(loginDto: LoginDto) {
-
     return this.http.post<JwtDto>(this.url + '/login', loginDto);
   }
 }

@@ -1,5 +1,5 @@
 import { TokenService } from './token.service';
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -8,19 +8,15 @@ import { Observable } from 'rxjs';
 })
 export class InterceptorService implements HttpInterceptor {
 
-
   constructor(private tokeService: TokenService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log('wdwadd');
     let intReq = req;
     const token = this.tokeService.getToken();
 
     if(token != null) {
-
       intReq = req.clone({ headers: req.headers.set('Authorization', 'Bearer ' + token) })
     }
-
     return next.handle(intReq);
   }
 }
