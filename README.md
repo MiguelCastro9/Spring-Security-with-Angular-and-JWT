@@ -16,8 +16,8 @@ Note: after running the application, execute the following SQL commands:
 > _IINSERT INTO usuario_role (usuario_id, role_id) VALUES (1, 1);_
 
 
-## Generating token
-![token](https://user-images.githubusercontent.com/56695817/211249526-791b9a77-180d-417e-92e1-60016e3bcd22.gif)
+## Generating and validating token
+![tokenvalid](https://user-images.githubusercontent.com/56695817/211307348-b89293f6-83dc-4fad-9350-e3e0d245a52e.gif)
 
 ## validating access
 ![users](https://user-images.githubusercontent.com/56695817/211249844-2559d25f-3163-4a6a-955a-0c61ff27e454.gif)
