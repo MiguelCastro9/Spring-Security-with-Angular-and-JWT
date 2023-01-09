@@ -26,10 +26,10 @@ export class UsuarioService {
     return this.http.get<UsuarioDto>(this.url + '/buscar/' + id, {headers});
   }
 
-  public novo(usuarioDto: UsuarioDto) {
+  public inserir(usuarioDto: UsuarioDto) {
 
     const headers = new HttpHeaders({Authorization: 'Bearer ' + this.token });
-    return this.http.post<any>(this.url + '/novo', usuarioDto, {headers});
+    return this.http.post<any>(this.url + '/inserir', usuarioDto, {headers});
   }
 
   public editar(usuarioDto: UsuarioDto) {

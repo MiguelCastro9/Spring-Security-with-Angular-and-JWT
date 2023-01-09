@@ -7,7 +7,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,9 +32,6 @@ public class UsuarioController {
     @Autowired
     RoleService roleService;
 
-    @Autowired
-    PasswordEncoder passwordEncoder;
-
     @GetMapping("/listar")
     public ResponseEntity<List<UsuarioModel>> listar() {
 
@@ -43,24 +39,23 @@ public class UsuarioController {
     }
 
     @GetMapping("/buscar/{id}")
-    public UsuarioModel buscarId(@PathVariable("id") Long id) {
+    public ResponseEntity<?> buscarId(@PathVariable("id") Long id) {
 
-        return usuarioService.findId(id);
+        return new ResponseEntity<>(usuarioService.find(id), HttpStatus.OK);
     }
 
-    @PostMapping("/novo")
-    public ResponseEntity<?> novo(@RequestBody UsuarioModel usuarioModel) {
+    @PostMapping("/inserir")
+    public ResponseEntity<?> inserir(@RequestBody UsuarioModel usuarioModel) {
 
-        usuarioModel.setSenha(passwordEncoder.encode(usuarioModel.getSenha()));
         usuarioService.save(usuarioModel);
         roleService.insertRoles(usuarioModel.getId(), usuarioModel.getRoleValor());
+        
         return new ResponseEntity<>("Usuário salvo com sucesso!", HttpStatus.CREATED);
     }
 
     @PutMapping("/editar")
     public ResponseEntity<?> editar(@RequestBody UsuarioModel usuarioModel) {
 
-        usuarioModel.setSenha(passwordEncoder.encode(usuarioModel.getSenha()));
         usuarioService.edit(usuarioModel);
         roleService.insertRoles(usuarioModel.getId(), usuarioModel.getRoleValor());
 

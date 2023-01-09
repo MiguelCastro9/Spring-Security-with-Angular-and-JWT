@@ -70,7 +70,7 @@ export class UsuarioComponent implements OnInit {
     }
 
     if (!this.verifica) {
-      this.usuarioService.novo(usuarioDto).subscribe().unsubscribe();
+      this.usuarioService.inserir(usuarioDto).subscribe().unsubscribe();
       alert('Usuário salvo com sucesso!')
       window.location.reload();
 
