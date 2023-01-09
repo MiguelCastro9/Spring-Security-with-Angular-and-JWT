@@ -4,10 +4,10 @@
    <hr class="my-4">
    <form>
       <div class="container form-group col-md-4">
-         <input type="email" class="form-control" id="email" name="email" [(ngModel)]="loginDto.email" placeholder="E-mail...">
+         <input type="email" class="form-control" id="email" name="email" [(ngModel)]="loginDto.email" maxlength="20" placeholder="E-mail...">
       </div>
       <div class="container form-group col-md-4">
-         <input type="password" class="form-control" id="senha" name="senha" [(ngModel)]="loginDto.senha" placeholder="Senha..." >
+         <input type="password" class="form-control" id="senha" name="senha" [(ngModel)]="loginDto.senha" maxlength="20" placeholder="Senha..." >
          <br>
          <button (click)="login(loginDto);" class="btn btn-outline-light btn-block"><strong>Entrar</strong></button>
          <br>
